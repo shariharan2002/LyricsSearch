@@ -7,8 +7,12 @@
     <link rel="stylesheet" href="/static/style.css">
 </head>
 <body>
-    <h1>{{ song.title }}</h1>
-    <pre>{{ song.lyrics }}</pre>
-    <a href="/">Back to Home</a>
+    <div class="container">
+        <h1 class="song-title">{{ song.title }}</h1>
+        <div class="lyrics-container">
+            <pre class="lyrics">{{ song.lyrics }}</pre>
+        </div>
+        <a href="/" class="back-link">Back to Home</a>
+    </div>
 </body>
 </html>

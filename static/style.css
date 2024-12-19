@@ -2,31 +2,66 @@ body {
     font-family: Arial, sans-serif;
     margin: 0;
     padding: 0;
+    background-color: #fff8e1; /* Light saffron background */
+    color: #333; /* High contrast for readability */
+    line-height: 1.6;
+}
+
+.container {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 20px;
     text-align: center;
-    background-color: #f8f9fa;
 }
 
-h1 {
-    margin: 20px;
-    color: #333;
+h1.song-title {
+    font-size: 2rem;
+    color: #d97706; /* Bright saffron for the title */
+    margin-bottom: 20px;
 }
 
-form {
-    margin: 20px;
+.lyrics-container {
+    background-color: #ffffff; /* White background for lyrics for contrast */
+    border: 2px solid #d97706; /* Saffron border */
+    border-radius: 8px;
+    padding: 20px;
+    margin-bottom: 20px;
+    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+    text-align: left; /* Align lyrics to the left for readability */
+    overflow-x: auto; /* Handle long lines gracefully */
 }
 
-input[type="text"] {
-    width: 50%;
-    padding: 10px;
-    margin-right: 10px;
+pre.lyrics {
+    font-size: 1.2rem; /* Larger text for easy reading */
+    white-space: pre-wrap; /* Wrap text instead of horizontal scrolling */
+    word-wrap: break-word;
 }
 
-button {
-    padding: 10px 20px;
-    cursor: pointer;
+a.back-link {
+    font-size: 1rem;
+    color: #d97706; /* Saffron-colored link */
+    text-decoration: none;
+    border: 2px solid #d97706;
+    border-radius: 5px;
+    padding: 10px 15px;
+    display: inline-block;
+    transition: all 0.3s ease;
 }
 
-ul {
-    list-style-type: none;
-    padding: 0;
+a.back-link:hover {
+    background-color: #d97706; /* Saffron background on hover */
+    color: #fff; /* White text on hover */
+}
+
+@media (max-width: 600px) {
+    h1.song-title {
+        font-size: 1.5rem; /* Smaller font for smaller screens */
+    }
+    pre.lyrics {
+        font-size: 1rem;
+    }
+    a.back-link {
+        font-size: 0.9rem;
+        padding: 8px 12px;
+    }
 }
