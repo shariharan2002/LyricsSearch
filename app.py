@@ -76,5 +76,15 @@ def song(song_id):
 
     return render_template('song.html', song=song)
 
+
+@app.route('/all_songs')
+def all_songs():
+    conn = get_db_connection()
+    songs = conn.execute("SELECT id, title FROM songs").fetchall()
+    conn.close()
+    return render_template('all_songs.html', songs=songs)
+
+
+
 if __name__ == '__main__':
     app.run(debug=True)
