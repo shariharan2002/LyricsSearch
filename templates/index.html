@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lyrics Search</title>
+    <link rel="stylesheet" href="/static/style.css">
+</head>
+<body>
+    <h1>Welcome to Lyrics Search</h1>
+    <form action="/search" method="get">
+        <input type="text" name="q" placeholder="Search for lyrics or shlokas..." required>
+        <button type="submit">Search</button>
+    </form>
+    <button onclick="location.href='/search?q='">All Songs</button>
+</body>
+</html>
