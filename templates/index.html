@@ -5,13 +5,80 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Lyrics Search</title>
     <link rel="stylesheet" href="/static/style.css">
+    <script>
+        // Function to fetch search suggestions based on the input
+        function fetchSuggestions() {
+            const query = document.getElementById('search-input').value;
+            const fulltext = document.getElementById('fulltext').checked;
+            if (query.length > 3) {
+                fetch(`/search/suggestions?q=${query}&fulltext=${fulltext}`)
+                    .then(response => response.json())
+                    .then(data => {
+                        const suggestions = data.songs;
+                        const suggestionsList = document.getElementById('suggestions-list');
+                        suggestionsList.innerHTML = ''; // Clear previous suggestions
+                        suggestions.forEach(song => {
+                            const li = document.createElement('li');
+                            li.textContent = song.title;
+                            li.onclick = function() {
+                                document.getElementById('search-input').value = song.title;
+                                suggestionsList.innerHTML = ''; // Clear suggestions
+                            };
+                            suggestionsList.appendChild(li);
+                        });
+                    });
+            } else {
+                document.getElementById('suggestions-list').innerHTML = ''; // Clear suggestions
+            }
+        }
+    </script>
+    <style>
+            /* Custom styles for dropdown */
+            #suggestions-list {
+                list-style-type: none;
+                padding: 0;
+                margin-top: 10px;
+                position: absolute;
+                width: 40%;
+                background-color: #FFEB99; /* Lighter saffron color */
+                border: 1px solid #f0c36d; /* Border matching the saffron theme */
+                box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+                border-radius: 4px;
+                z-index: 1000;
+            }
+            #suggestions-list li {
+                padding: 8px;
+                cursor: pointer;
+            }
+            #suggestions-list li:hover {
+                background-color: #ffd966; /* Highlight when hovered */
+            }
+    </style>
 </head>
 <body>
-    <h1>Welcome to Lyrics Search</h1>
-    <form action="/search" method="get">
-        <input type="text" name="q" placeholder="Search for lyrics or shlokas..." required>
-        <button type="submit">Search</button>
-    </form>
-    <button onclick="location.href='/search?q='">All Songs</button>
+    <div class="container">
+        <h1>Welcome to Lyrics Search</h1>
+        <form action="/search" method="get" class="search-form">
+            <input 
+                type="text" 
+                name="q" 
+                id="search-input" 
+                placeholder="Search for lyrics or song titles..." 
+                required 
+                class="search-input" 
+                oninput="fetchSuggestions()">
+            <button type="submit" class="search-button">Search</button>
+        </form>
+        
+        <!-- Full-text search toggle -->
+        <label>
+            <input type="checkbox" id="fulltext" name="fulltext"> Full-text search
+        </label>
+        
+        <!-- Dropdown for search suggestions -->
+        <ul id="suggestions-list" style="list-style-type: none; padding: 0; margin-top: 10px;"></ul>
+
+        <button onclick="location.href='/search?q='" class="all-songs-button">All Songs</button>
+    </div>
 </body>
 </html>

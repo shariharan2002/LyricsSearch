@@ -1,3 +1,4 @@
+/* Global Styles */
 body {
     font-family: Arial, sans-serif;
     margin: 0;
@@ -14,6 +15,7 @@ body {
     text-align: center;
 }
 
+/* Song Page Styles */
 h1.song-title {
     font-size: 2rem;
     color: #d97706; /* Bright saffron for the title */
@@ -53,15 +55,143 @@ a.back-link:hover {
     color: #fff; /* White text on hover */
 }
 
+/* Search Page Styles */
+h1 {
+    font-size: 2rem;
+    color: #d97706; /* Bright saffron */
+    margin-bottom: 20px;
+}
+
+.search-form {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 20px;
+}
+
+.search-input {
+    padding: 12px;
+    font-size: 1.2rem;
+    border: 2px solid #d97706;
+    border-radius: 8px;
+    width: 60%;
+    max-width: 500px;
+    margin-right: 10px;
+    outline: none;
+}
+
+.search-input:focus {
+    border-color: #b15b06; /* Darker saffron on focus */
+}
+
+.search-button {
+    padding: 12px 25px;
+    background-color: #d97706;
+    color: white;
+    font-size: 1.2rem;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.search-button:hover {
+    background-color: #b15b06;
+}
+
+.all-songs-button {
+    margin-top: 20px;
+    padding: 12px 25px;
+    background-color: #fff;
+    color: #d97706;
+    font-size: 1.2rem;
+    border: 2px solid #d97706;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.all-songs-button:hover {
+    background-color: #d97706;
+    color: white;
+}
+
+/* Search Results Table Styles */
+.results-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
+    background-color: #fff; /* White background for contrast */
+    border: 2px solid #d97706; /* Saffron border */
+    border-radius: 8px;
+    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+    text-align: center; /* Center align the table entries */
+}
+
+.results-table th, .results-table td {
+    padding: 12px;
+    font-size: 1.1rem;
+    border: 1px solid #d97706; /* Saffron borders for table cells */
+}
+
+.results-table th {
+    background-color: #d97706; /* Saffron background for headers */
+    color: white;
+}
+
+.results-table tr:nth-child(even) {
+    background-color: #f7f2d7; /* Light saffron background for even rows */
+}
+
+.results-table tr:hover {
+    background-color: #f1c27d; /* Hover effect with darker saffron */
+}
+
+.results-table a {
+    color: #d97706; /* Saffron-colored links */
+    text-decoration: none;
+    font-weight: bold;
+}
+
+.results-table a:hover {
+    color: #b15b06; /* Darker saffron on hover */
+}
+
+/* Media Queries for Responsiveness */
 @media (max-width: 600px) {
-    h1.song-title {
+    h1 {
         font-size: 1.5rem; /* Smaller font for smaller screens */
     }
+
+    .search-input {
+        font-size: 1rem;
+        width: 80%;
+    }
+
+    .search-button {
+        font-size: 1rem;
+    }
+
+    .all-songs-button {
+        font-size: 1rem;
+    }
+
+    /* Song Page Media Queries */
+    h1.song-title {
+        font-size: 1.5rem; /* Smaller font for song title on smaller screens */
+    }
+
     pre.lyrics {
         font-size: 1rem;
     }
+
     a.back-link {
         font-size: 0.9rem;
         padding: 8px 12px;
+    }
+
+    /* Search Results Table for Small Screens */
+    .results-table th, .results-table td {
+        padding: 8px;
+        font-size: 1rem;
     }
 }

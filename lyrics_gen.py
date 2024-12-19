@@ -28,20 +28,37 @@ def process_lyrics_file(input_file):
             # Start a new song
             parts = line.strip().split(maxsplit=1)
             current_song = parts[1] if len(parts) > 1 else "Unknown_Song"
+            current_song = capitalize_song_name(current_song)  # Capitalize the song name
             current_lyrics = []
         else:
             # Add the line to the current song's lyrics
             if line.strip():
-                current_lyrics.append(line.strip())
+                current_lyrics.append(format_lyrics_sentence_case(line.strip()))  # Format lyrics to sentence case
 
     # Save the last song if any
     if current_song:
         save_song_to_file(output_dir, current_song, current_lyrics)
 
+# Function to capitalize the song name (capitalize each word)
+def capitalize_song_name(song_name):
+    # Capitalize each word, while handling exceptions like 'the', 'a', etc.
+    exceptions = ['a', 'an', 'and', 'but', 'for', 'nor', 'of', 'on', 'or', 'so', 'the', 'to', 'up', 'yet']
+    words = song_name.split()
+    capitalized_words = [word.capitalize() if word.lower() not in exceptions else word.lower() for word in words]
+    return " ".join(capitalized_words)
+
+# Function to format the lyrics to sentence case (capitalize first letter of each sentence)
+def format_lyrics_sentence_case(lyric_line):
+    # Capitalize the first letter of the line and make the rest lowercase
+    return lyric_line.capitalize()
+
 # Function to save a song's lyrics to a file
 def save_song_to_file(output_dir, song_name, lyrics):
+    # Capitalize the song name for the filename (ensure it's in Capitalize Each Word Case)
+    song_name_for_filename = capitalize_song_name(song_name)
+    
     # Replace spaces and special characters in the song name to make it a valid filename
-    filename = re.sub(r"[\\/:*?\"<>|]", "_", song_name) + ".txt"
+    filename = re.sub(r"[\\/:*?\"<>|]", "_", song_name_for_filename) + ".txt"
     file_path = os.path.join(output_dir, filename)
 
     # Write the lyrics to the file
